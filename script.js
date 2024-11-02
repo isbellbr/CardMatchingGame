@@ -152,10 +152,11 @@ function shuffleArray(array) {
 initGame();
 
 function restartGame() {
-    resetBoard();
-    gameBoard.innerHTML = "";
-    cards = [];
-    initGame();
+    // resetBoard();
+    // gameBoard.innerHTML = "";
+    // cards = [];
+    // initGame();
+    location.reload();
 }
 
 restart_button = document.getElementById("restart-btn");

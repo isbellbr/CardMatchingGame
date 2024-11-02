@@ -35,6 +35,9 @@ body {
     transition: transform 0.5s;
     transform-style: preserve-3d;
 }
+.card:hover {
+    transform: scale(1.05);
+}
 
 .card.flipped {
     background-color: #fff;
