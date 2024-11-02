@@ -14,20 +14,47 @@ let lockBoard = false;
     Use the createCard() function to initialize each cardElement and add it to the gameBoard.
 
 */
+gameBoard = document.getElementById("game-board");
+
 function initGame() {
     // Write your code here
     shuffleArray(symbols);
-    for (sym of symbols) {
-        cards.push(createCard(sym));
-    }
-
     for (let sym of symbols) {
         cards.push(createCard(sym));
+        cards.push(createCard(sym));
     }
-    gameBoard = document.getElementById("game-board");
+    shuffleArray(cards);
     for (let card of cards) {
         gameBoard.appendChild(card);
     }
+    createTimer();
+}
+
+function createTimer() {
+    // Get the HTML element where you want to display the timer
+    const timerElement = document.getElementById("timer");
+
+    // Set the initial time in seconds
+    let timeRemaining = 60; 
+
+    // Update the timer every second
+    const timerInterval = setInterval(() => {
+    // Display the time remaining
+    timerElement.textContent = `Time remaining: ${timeRemaining} seconds`;
+
+    // Decrement the time remaining
+    timeRemaining--;
+
+    // Stop the timer when it reaches 0
+    if (timeRemaining < 0) {
+        clearInterval(timerInterval);
+        timerElement.textContent = "Time's up!";
+        setTimeout(() => {
+            restartGame();
+        }, 500);
+
+    }
+    }, 1000); // 1000 milliseconds = 1 second
 }
 
 
@@ -124,13 +151,12 @@ function shuffleArray(array) {
 
 initGame();
 
-restart_button = document.getElementById("restart-btn");
-restart_button.addEventListener("click", ()=> {
+function restartGame() {
     resetBoard();
-    shuffleArray(cards);
-    for (let card of cards) {
-        card.classList.remove("matched");
-        card.classList.remove("flipped");
-        card.textContent = "";
-    }
-})
+    gameBoard.innerHTML = "";
+    cards = [];
+    initGame();
+}
+
+restart_button = document.getElementById("restart-btn");
+restart_button.addEventListener("click", restartGame);

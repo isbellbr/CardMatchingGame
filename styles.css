@@ -2,6 +2,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     background-color: #121212;
     color: white;
@@ -51,4 +52,10 @@ body {
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
+}
+
+#timer {
+    float: right;
+    font-size: 18px;
+    color: white;
 }
